@@ -12,7 +12,10 @@ const TagRemove = ({tag, ...rest}) => {
         await axios.delete(`/api/tags/${tag.id}`)
         setIsLoading(false)
 
-        mutate('/api/tags')
+        mutate('/api/tags', tags => ({
+            ...tags,
+            data: tags.data.filter(t => t.id !== tag.id)
+        }))
     }
 
     return (

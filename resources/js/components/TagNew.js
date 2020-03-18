@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {mutate} from "swr"
 import {PlusOutlined} from "@ant-design/icons"
-import classNames from 'classnames'
+import {v4 as uuid} from 'uuid'
 
 import TagInput from "./TagInput"
 
@@ -15,7 +15,18 @@ const TagNew = () => {
                 name: value,
             })
 
-            mutate('/api/tags')
+            const tagNew = {
+                id: uuid(),
+                name: value,
+            }
+
+            mutate('/api/tags', tags => ({
+                ...tags,
+                data: [
+                    ...tags.data,
+                    tagNew,
+                ]
+            }))
         }
 
         setIsEditing(false)

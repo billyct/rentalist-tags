@@ -14,7 +14,19 @@ const TagItem = ({tag}) => {
         if (!!value) {
             await axios.put(`/api/tags/${tag.id}`, {name: value})
 
-            mutate('/api/tags')
+            mutate('/api/tags', tags => ({
+                ...tags,
+                data: tags.data.map(t => {
+                    if (t.id === tag.id) {
+                        return {
+                            ...t,
+                            ...tag,
+                        }
+                    }
+
+                    return t
+                })
+            }))
         }
 
         handleAfterSave()
