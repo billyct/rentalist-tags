@@ -13,7 +13,7 @@
         "@ant-design/icons": "^4.0.3",
         "@babel/preset-react": "^7.0.0",
         "@fullhuman/postcss-purgecss": "^2.1.0",
-        "axios": "^0.19",
+        "axios": "^0.21",
         "bootstrap": "^4.0.0",
         "classnames": "^2.2.6",
         "cross-env": "^7.0",
